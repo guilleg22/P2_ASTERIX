@@ -1,4 +1,0 @@
-# P2_ASTERIX
-
-#PASCUIUUUUUU
-# .
