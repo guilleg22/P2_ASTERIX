@@ -1,0 +1,15 @@
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.AssemblyInfoInputs.cache
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.AssemblyInfo.cs
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.csproj.CoreCompileInputs.cache
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.sourcelink.json
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\bin\Debug\net9.0\ASTDECO.exe
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\bin\Debug\net9.0\ASTDECO.deps.json
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\bin\Debug\net9.0\ASTDECO.runtimeconfig.json
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\bin\Debug\net9.0\ASTDECO.dll
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\bin\Debug\net9.0\ASTDECO.pdb
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.dll
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\refint\ASTDECO.dll
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.pdb
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ASTDECO.genruntimeconfig.cache
+C:\Users\test\Desktop\PGTA\P2\P2_ASTERIX\ASTDECO\obj\Debug\net9.0\ref\ASTDECO.dll
