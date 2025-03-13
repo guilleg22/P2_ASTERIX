@@ -113,6 +113,9 @@ namespace ASTDECO
                     //Leer resto
                     List<byte> completeMessage = new List<byte>(br.ReadBytes(length)); //array de bytes usando la longitud esperada
 
+                    //Leer FSPEC
+                    LeerFSPEC(completeMessage);
+
                     //info prueba
                     Console.WriteLine($"Mensaje {NUM}: Categoría = {nextByte}, Longitud = {combinedValue}");
                     NUM++;
@@ -120,6 +123,24 @@ namespace ASTDECO
             }
 
             return dataTable; 
+        }
+        public void LeerFSPEC(List<byte> message)
+        //FSPEC se encuentra justo después de los primeros bytes (CAT48 Y LONGITUD).
+        //Hay que leer bytes uno por uno hasta que un byte FSPEC tenga el bit más alto (el bit 8) en 0.
+        {
+            Console.WriteLine("FSPEC en binario:");
+            int index=0;
+            byte fspecByte; //se almecena cada byte del FSPEC
+            do
+            {
+                fspecByte = message[index];
+                string binaryString = Convert.ToString(fspecByte, 2).PadLeft(8, '0');// Convierte el byte a su representación binaria, y se asegura que tenga 8 bits
+                Console.WriteLine(binaryString);
+                index++;
+
+            } 
+            while ((fspecByte & 0x80) != 0);//La operacion AND (&) 0x80 (hexadecimal) es 10000000 en binario. // Si el bit más alto (MSB) es 1, significa que hay otro byte FSPEC y sigue leyendo
+                                             //Si el bit mas alto es 0, significa que es el último byte FSPEC y se deteiene la lectura.
         }
     }
 }

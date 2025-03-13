@@ -8,7 +8,7 @@ namespace AST_DECO
         static void Main(string[] args)
         {
             //Ruta
-            string filePath = @"C:\Users\34626\Documents\PGTA\ASTERIX\P2_ASTERIX\ConsoleApp1\230502-est-080001_BCN_60MN_08_09.ast"; // Ruta del archivo binario;
+            string filePath = @"C:\Users\34626\Documents\PGTA\ASTERIX\P2_ASTERIX\ASTDECO\230502-est-080001_BCN_60MN_08_09 (3).ast"; // Ruta del archivo binario;
 
             //inst clasificador
             Clasificador clasificador = new Clasificador();
