@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
+      "projectUniqueName": "C:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
       "projectName": "ASTDECO",
-      "projectPath": "c:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
+      "projectPath": "C:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
       "packagesPath": "C:\\Users\\34626\\.nuget\\packages\\",
-      "outputPath": "c:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\obj\\",
+      "outputPath": "C:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\34626\\AppData\\Roaming\\NuGet\\NuGet.Config",

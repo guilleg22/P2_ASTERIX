@@ -12,135 +12,117 @@ namespace ASTDECO
             // Crear DataTable
             DataTable dataTable = new DataTable();
 
-            // Lista de nombres de columnas
-            List<string> columnNames = new List<string>
+            // Lista de Data Items en el orden del FSPEC
+            List<string> dataItemsList = new List<string>
+
             {
-                "N", // Numero de registro
+                "010", "140", "020", "040", "070", "090", "130",
+                "220", "240", "250", "161", "042", "200", "170",
+                "210", "030", "080", "100", "110", "120", "230",
+                "260", "055", "050", "065", "060", "SP", "RE"
 
-                //010
-                "SAC", "SIC",
-
-                //140
-                "TIME",
-
-                //LLA
-                "LAT", "LON", "H",
-
-                //020
-                "TYP_020", "SIM_020", "RDP_020", "SPI_020", "RAB_020",
-                "TST_020", "ERR_020", "XPP_020", "ME_020", "MI_020",
-                "FOEFRI_020", "ADSB_EP_020", "ADSB_VAL_020",
-                "SCN_EP_020", "SCN_VAL_020", "PAI_EP_020", "PAI_VAL_020",
-
-                //040
-                "RHO", "THETA",
-
-                //070
-                "V_070", "G_070", "L_070", "Mode_3A",
-
-                //090
-                "V_090", "G_090", "Flight_Level",
-
-                //Mode C Corrected
-                "ModeC_Co",
-
-                //130
-                "SRL_130", "SRR_130", "SAM_130", "PRL_130", "PAM_130",
-                "RPD_130", "APD_130",
-
-                //220
-                "Target_Address", //TA en la tabla
-
-                //240
-                "Target_Identification", //TI en la tabla
-
-                // 250 -Selected Vertical Intention BDS 4
-                "Mode_S", "MCP_ALT", "FMS_ALT",
-                "BP", "VNAV", "ALTHOLD", "APP",
-                "TARGETALT_SOURCE",
-
-                // 250 -Track and Turn Report BDS 5 
-                "RA", "TTA", "GS",
-                "TAR", "TAS",
-
-                //250 -Heading and Speed Report BDS 6 
-                "HDG", "IAS",
-                "MACH", "BAR", "IVV",
-
-                //161
-                "Track_Number",
-
-                //042
-                "X_Component", "Y_Component",
-
-                //200
-                "Ground_Speed_kt", "Heading",
-
-                //170
-                "CNF_170", "RAD_170", "DOU_170", "MAH_170", "CDM_170",
-                "TRE_170", "GHO_170", "SUP_170", "TCC_170",
-
-                //110
-                "HEIGHT",
-
-                //230
-                "COM_230", "STAT_230", "SI_230", "MSSC_230", "ARC_230",
-                "AIC_230", "B1A_230", "B1B_230"
             };
 
             //Agregar columnas
-            foreach (string columnName in columnNames)
+            dataTable.Columns.Add("Mensaje", typeof(int));
+           
+            // Agregar columnas de Data Items como booleanos
+            foreach (var item in dataItemsList)
             {
-                dataTable.Columns.Add(columnName, typeof(string));
+                dataTable.Columns.Add(item, typeof(bool));
             }
+
+
+           
 
             //Leer el archivo .ast
             using (FileStream fs = new FileStream(Path, FileMode.Open, FileAccess.Read))
             using (BinaryReader br = new BinaryReader(fs))
             {
-                int NUM = 1;
+                int numMensaje = 1;
 
-                while (br.BaseStream.Position != br.BaseStream.Length)
+                while (br.BaseStream.Position < br.BaseStream.Length)
                 {
-                    //primer byte CAT del 0 a 255
-                    byte nextByte = br.ReadByte(); 
+                    try
+                    {
+                        // Verificar si quedan suficientes bytes para leer CAT + Longitud (mínimo 3 bytes)
+                        if (br.BaseStream.Position + 3 > br.BaseStream.Length)
+                        {
+                            Console.WriteLine("Fin del archivo alcanzado antes de leer CAT y longitud.");
+                            break;
+                        }
+                         // Leer y omitir los 3 primeros bytes (CAT + longitud)
+                        br.ReadByte();
+                        byte[] lengthBytes = br.ReadBytes(2);
+                        if (lengthBytes.Length < 2)
+                        {
+                            Console.WriteLine("Error: No se pudieron leer los bytes de longitud.");
+                            break;
+                        }
+                        int length = ((lengthBytes[0] << 8) | lengthBytes[1]) - 3; // Longitud total menos los 3 bytes ya leídos
+                         // Verificar si quedan suficientes bytes para leer FSPEC
+                        if (br.BaseStream.Position >= br.BaseStream.Length)
+                         {
+                            Console.WriteLine("No hay suficientes datos para leer FSPEC.");
+                            break;
+                        }
 
-                    //Siguients 2 bytes LONGITUD 
-                    byte[] nextTwoBytes = br.ReadBytes(2);
-                    int combinedValue = (nextTwoBytes[0] << 8) | nextTwoBytes[1]; //dejamos 8 ceros de espacio a la derecha para la suma con el otro byte
-                    int length = combinedValue - 3; //Restamos 3 bytes (cat + longitud)
+                        // Leer FSPEC con manejo de errores
+                        List<byte> fspecBytes = new List<byte>();
+                        byte currentByte;
+                        do
+                        {
+                            if (br.BaseStream.Position >= br.BaseStream.Length)
+                            {
+                                Console.WriteLine("Intento de leer FSPEC fuera del rango del archivo.");
+                                break;
+                            }
+                            currentByte = br.ReadByte();
+                            fspecBytes.Add(currentByte);
+                        } while ((currentByte & 0x01) != 0); // Si el bit 0 es 1, seguir leyendo FSPEC
 
-                    //Leer resto
-                    List<byte> completeMessage = new List<byte>(br.ReadBytes(length)); //array de bytes usando la longitud esperada
+                        // Crear una nueva fila
+                        DataRow row = dataTable.NewRow();
+                        row["Mensaje"] = numMensaje++;
 
-                    //Leer FSPEC
-                    LeerFSPEC(completeMessage);
+                        // Inicializar todos los Data Items como false
+                        foreach (var item in dataItemsList)
+                        {
+                            row[item] = false;
+                        }
 
-                    //info prueba
-                    Console.WriteLine($"Mensaje {NUM}: Categoría = {nextByte}, Longitud = {combinedValue}");
-                    NUM++;
+                        // Procesar FSPEC correctamente
+                        int index = 0;
+                        foreach (byte fspecByte in fspecBytes)
+                        {
+                            for (int bit = 7; bit >= 1; bit--) // Se ignora el bit 0
+                            {
+                                if (index < dataItemsList.Count && (fspecByte & (1 << bit)) != 0)
+                                {
+                                    row[dataItemsList[index]] = true; // Marcar Data Item como presente
+                                }
+                                index++;
+                            }
+                        }
+
+                        // Agregar la fila a la tabla
+                        dataTable.Rows.Add(row);
+                        // Saltar el resto del mensaje si aún hay bytes por leer
+                        long bytesRestantes = length - fspecBytes.Count;
+                        if (bytesRestantes > 0 && br.BaseStream.Position + bytesRestantes <= br.BaseStream.Length)
+                        {
+                            br.BaseStream.Position += bytesRestantes;
+                        }
+                    }
+                    catch(Exception ex)
+                    {
+                        Console.WriteLine($"Error procesando mensaje {numMensaje}: {ex.Message}");
+                        break; // Detener lectura si ocurre un error
+
+                    }
                 }
             }
-
-            return dataTable; 
-        }
-        public void LeerFSPEC(List<byte> message)
-        //FSPEC se encuentra justo después de los primeros bytes (CAT48 Y LONGITUD).
-        //Hay que leer bytes uno por uno hasta que un byte FSPEC tenga el bit más alto (el bit 8) en 0.
-        {
-            Console.WriteLine("FSPEC en binario:");
-            int index=0;
-            byte fspecByte; //se almecena cada byte del FSPEC
-            do
-            {
-                fspecByte = message[index];
-                string binaryString = Convert.ToString(fspecByte, 2).PadLeft(8, '0');// Convierte el byte a su representación binaria, y se asegura que tenga 8 bits
-                Console.WriteLine(binaryString);
-                index++;
-
-            } 
-            while ((fspecByte & 0x80) != 0);//La operacion AND (&) 0x80 (hexadecimal) es 10000000 en binario. // Si el bit más alto (MSB) es 1, significa que hay otro byte FSPEC y sigue leyendo
-                                             //Si el bit mas alto es 0, significa que es el último byte FSPEC y se deteiene la lectura.
-        }
+            return dataTable;            
+        }       
     }
 }
