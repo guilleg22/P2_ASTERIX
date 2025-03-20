@@ -2,13 +2,19 @@
 using System.IO;
 using System.Data;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 
 namespace ASTDECO
 {
     public class Clasificador
     {
+       
+
+
+        
         public DataTable CrearClasi(string Path)
         {
+
             // Crear DataTable
             DataTable dataTable = new DataTable();
 
@@ -123,22 +129,8 @@ namespace ASTDECO
                 }
             }
             return dataTable;            
-        }       
-    }
-    public static class dataItem
-    {
-        public static double DecodeTimeOfDay(List<byte> message, ref int index)
-        {
-            if (index + 3 > message.Count) return 0;
-
-            int timeOfDayRaw = (message[index] << 16) | (message[index + 1] << 8) | message[index + 2];
-            index += 3;
-
-            return timeOfDayRaw / 128.0; // Convertir a segundos
-
         }
+         
     }
-
-
-
+    
 }

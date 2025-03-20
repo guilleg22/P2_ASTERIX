@@ -1,10 +1,12 @@
 using System;
 using System.Data;
 using ASTDECO;
+
 namespace AST_DECO
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             //Ruta
@@ -14,10 +16,9 @@ namespace AST_DECO
             string csvPath = @"C:\Users\34626\Documents\PGTA\ASTERIX\P2_ASTERIX.csv";
 
 
-
             //inst clasificador
             Clasificador clasificador = new Clasificador();
-
+            
             //DataTable
             DataTable tabla = clasificador.CrearClasi(filePath);
              // Exportar a CSV
