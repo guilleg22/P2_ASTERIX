@@ -8,24 +8,26 @@
     "net9.0": []
   },
   "packageFolders": {
-    "C:\\Users\\test\\.nuget\\packages\\": {}
+    "C:\\Users\\34626\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\test\\Desktop\\PGTA\\P2\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
+      "projectUniqueName": "C:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
       "projectName": "ASTDECO",
-      "projectPath": "C:\\Users\\test\\Desktop\\PGTA\\P2\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
-      "packagesPath": "C:\\Users\\test\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\test\\Desktop\\PGTA\\P2\\P2_ASTERIX\\ASTDECO\\obj\\",
+      "projectPath": "C:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\ASTDECO.csproj",
+      "packagesPath": "C:\\Users\\34626\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\34626\\Documents\\PGTA\\ASTERIX\\P2_ASTERIX\\ASTDECO\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\test\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\34626\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net9.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -65,7 +67,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

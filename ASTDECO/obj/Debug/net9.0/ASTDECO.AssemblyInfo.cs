@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ASTDECO")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+eb833275406b1918072550da634e1a6526a757fe")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+79a6736bd0f290b9ebe583430bf9a4141f26fd6d")]
 [assembly: System.Reflection.AssemblyProductAttribute("ASTDECO")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ASTDECO")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
